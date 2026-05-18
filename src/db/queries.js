@@ -192,6 +192,16 @@ export async function deleteBookAndPublications(id) {
 	return true
 }
 
+export async function updatePublicationByBookId(idLibro, precio, estadoLibro, descripcion) {
+	const updates = {}
+	if (precio !== undefined) updates.precio = precio
+	if (estadoLibro !== undefined) updates.estado_libro = estadoLibro
+	if (descripcion !== undefined) updates.descripcion = descripcion
+	const { error } = await supabase.from('publicaciones').update(updates).eq('id_libro', idLibro)
+	if (error) throw error
+	return true
+}
+
 export async function listBooksByUser(dni) {
 	const { data: pubs, error } = await supabase
 		.from('publicaciones')
