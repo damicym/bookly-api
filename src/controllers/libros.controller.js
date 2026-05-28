@@ -2,7 +2,7 @@ import * as librosService from '../services/libros.service.js'
 
 export async function getAllBooks(req, res) {
   try {
-    const books = await librosService.getAllBooks()
+    const books = await librosService.getBooks()
     res.json(books)
   } catch (err) {
     res.status(500).json({ error: err.message })
